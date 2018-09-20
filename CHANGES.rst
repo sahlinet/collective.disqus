@@ -7,7 +7,14 @@ Changelog
 - Use https to load count.js from Disqus.com
   [philipsahli]
 
-- Package is now compatible with Plone 5.1.
+- Fix package dependencies.
+  [hvelarde]
+
+- Remove soft dependency on zope.formlib under Plone 5;
+  this fixes support for Plone 5.x.
+  [hvelarde]
+
+- Drop support for Plone 4.2.
   [hvelarde]
 
 - Remove dependency on unittest2 and explicitly drop support for Python 2.6.

@@ -5,12 +5,15 @@ cache:
   directories:
   - eggs
 env:
-- PLONE_VERSION=4.2
 - PLONE_VERSION=4.3
 - PLONE_VERSION=5.0
 - PLONE_VERSION=5.1
 matrix:
   fast_finish: true
+before_install:
+# FIXME: I have no idea how and why six==1.11.0 is being installed
+#        Plone 4.3 and 5.1 still depend on six==1.10.0
+- pip uninstall -y six
 install:
 - sed -ie "s#test-5.0#test-$PLONE_VERSION#" buildout.cfg
 - python bootstrap.py
@@ -23,9 +26,16 @@ before_script:
 script:
 - bin/code-analysis
 - bin/test
+- bin/pylint --py3k --disable=no-absolute-import collective/disqus || true
 after_success:
-- bin/createcoverage
+- pip install coverage
+- coverage run bin/test
+# Coveralls
 - pip install coveralls
 - coveralls
+# Codacy
+- coverage xml
+- pip install codacy-coverage
+- python-codacy-coverage -r coverage.xml
 notifications:
   irc: irc.freenode.org#plone-testing
