@@ -1,10 +1,16 @@
 Changelog
 ---------
 
-2.2 (unreleased)
+2.3 (unreleased)
 ^^^^^^^^^^^^^^^^
 
-- Use https to load count.js from Disqus.com
+- Nothing changed yet.
+
+
+2.2 (2018-09-20)
+^^^^^^^^^^^^^^^^
+
+- Use HTTPS schema to load count.js from Disqus.
   [philipsahli]
 
 - Fix package dependencies.
